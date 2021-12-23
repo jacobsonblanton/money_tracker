@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 from flask_login import UserMixin, login_manager, login_user, login_required, logout_user, current_user, LoginManager
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 from . import db
 from sqlalchemy.sql import func
 
@@ -30,6 +29,7 @@ class Paycheck(db.Model):
 
 class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    bank = db.Column(db.String(200), nullable=False)
     acct_type = db.Column(db.String(200), nullable=False)
     acct_number = db.Column(db.Integer, nullable=False)
     user_acct_type = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

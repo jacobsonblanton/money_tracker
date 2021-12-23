@@ -1,10 +1,12 @@
+import re
 from flask import Flask, render_template, redirect, url_for, request, flash, Blueprint
+import flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
 from flask_login import UserMixin, login_manager, login_user, login_required, logout_user, current_user, LoginManager
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
-from .models import User
+from .models import User, Account
 
 auth = Blueprint('auth', __name__)
 
@@ -37,7 +39,6 @@ def sign_up():
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
             
-
 
             return redirect(url_for('views.home')) 
 
