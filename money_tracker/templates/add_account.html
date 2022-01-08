@@ -11,15 +11,57 @@
     <title>Money Accounts | Add Account</title>
 </head>
 <body>
+    <!-- implenting a navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="navbar-brand" href="/home">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/expenses">Expenses<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/investing">Investing<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/help">Help<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/notifications">Notifications<span class="sr-only"></span></a>
+                </li>
+                <a class="btn btn-outline-light" href="/add-account">+ Add Account</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{user.first_name}}'s Profile
+                        
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/profile">Profile Page</a>
+                        <a class="dropdown-item" href="/account">Accounts</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                </li>
+                
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
 
     <div class="container-fluid mt-3">
         <form method="POST">
             <div class="form-group">
-                <label class="Bank">Bank</label>
+                <label for="Bank">Bank</label>
                 <input type="text" name="bank-content" id="bank-content" class="form-control" placeholder="Enter Bank Name">
                 <br/>
                 <br/>
-                <label class="BankAccountType">Bank Account</label>
+                <label for="BankAccountType">Bank Account</label>
                 <input type="text" name="bank-account-type-content" id="bank-account-type-content" class="form-control" placeholder="Enter Bank Account Type">
                 <br/>
                 <br/>
