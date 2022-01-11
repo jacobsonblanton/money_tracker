@@ -65,7 +65,10 @@ def finanical_calculator():
 def account():
     if request.method == 'POST':
         pass
-    return render_template("account.html", user=current_user)
+    else:
+        # displaying the accounts from the database table
+        account = Account.query.all()
+        return render_template("account.html", user=current_user, account=account)
 
 
 @views.route('/expenses', methods=['POST', 'GET'])

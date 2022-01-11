@@ -32,14 +32,14 @@ class Account(db.Model):
     bank = db.Column(db.String(200), nullable=False)
     acct_type = db.Column(db.String(200), nullable=False)
     acct_number = db.Column(db.String(200), nullable=False)
-    user_acct_type = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_acct = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class Expenses(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     expense_type = db.Column(db.String(200), nullable=False)
-    user_expense_type = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_expense = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class Net_Balance(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     balance = db.Column(db.Integer, nullable=False)
-    user_balance = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_balance = db.Column(db.Integer, db.ForeignKey('user.id'))
