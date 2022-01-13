@@ -32,6 +32,7 @@ class Account(db.Model):
     bank = db.Column(db.String(200), nullable=False)
     acct_type = db.Column(db.String(200), nullable=False)
     acct_number = db.Column(db.String(200), nullable=False)
+    acct_balance = db.Column(db.Integer, nullable=True)
     user_acct = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class Expenses(db.Model):

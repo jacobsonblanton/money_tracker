@@ -8,12 +8,12 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{url_for('static', filename='styles.css')}}" rel="stylesheet" >
     <script src="{{url_for('static', filename='script.js')}}" defer></script>
-    <title>Money Accounts | Add Account</title>
+    <title>Money Accounts | Accounts</title>
 </head>
 <body>
     <!-- implenting a navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <a class="navbar-brand" href="/home">Dashboard</a>
+        <a class="navbar-brand" href="/home">Money Tracker App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,10 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/expenses">Expenses<span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/investing">Investing<span class="sr-only"></span></a>
+                    <a class="nav-link" href="/financial-calculator">Financial Calculator<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/help">Help<span class="sr-only"></span></a>
@@ -32,7 +29,6 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/notifications">Notifications<span class="sr-only"></span></a>
                 </li>
-                <a class="btn btn-outline-light" href="/add-account">+ Add Account</a>
             </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
@@ -59,9 +55,9 @@
         <div class="container-fluid">
             <a  href="/add-account" class="btn btn-outline-primary btn-link" type="button">+Add an Account</a>
             <br/><br/><br/><br/>
-            <p>This is where account info will be shown.</p>
+            <p>Here is a list of your accounts:</p>
             <!-- displaying the user's accounts on page -->
-            <!-- displaying the account(all the contents in the SQL database asset) in table format -->
+            <!-- displaying the account(all the contents in the SQL database account) in table format -->
             <table class="table table-striped">
                 <tr>
                     <th>Bank</th>
@@ -74,11 +70,14 @@
                         <td>{{account.bank}}</td>
                         <td>{{account.acct_type}}</td>
                         <td>{{account.acct_number}}</td>
+                        <td>${{account.acct_balance}}</td>
                     </tr>
                 {% endfor %}
             </table>
-    
-        
+            <br/>
+            <p>Your total balance of all your accounts is</p>            
+            ${{tab}}
+
         <br/>
         <!-- displaying the flashed messages-->
         {% with messages = get_flashed_messages(with_categories=true) %} 

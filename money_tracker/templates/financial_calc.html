@@ -20,15 +20,14 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/financial-calculator">Financial Calculator<span class="sr-only"></span></a>
-                </li>
+                
                 <li class="nav-item active">
                     <a class="nav-link" href="/help">Help<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/notifications">Notifications<span class="sr-only"></span></a>
                 </li>
+                <a class="btn btn-outline-light" href="/add-account">+ Add Account</a>
             </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
@@ -54,25 +53,21 @@
     <div class="container-fluid mt-3">
         <form method="POST">
             <div class="form-group">
-                <label for="Bank">Bank</label>
-                <input type="text" name="bank-content" id="bank-content" class="form-control" placeholder="Enter Bank Name">
-                <br/>
-                <br/>
-                <label for="BankAccountType">Bank Account</label>
-                <input type="text" name="bank-account-type-content" id="bank-account-type-content" class="form-control" placeholder="Enter Bank Account Type">
-                <br/>
-                <br/>
-                <label for="BankAccountNumber">Bank Account Number</label>
-                <input type="text" name="bank-account-number-content" id="bank-account-number-content" class="form-control" placeholder="Enter Bank Account Number">           
-                <br/>
-                <br/>
-                <label for="AccountBalance">Account Balance</label>
-                <input type="number" name="account-balance-content" id="account-balance-content" class="form-control" placeholder="Enter Account Balance">
+                <label for="Payday">How often is your Payday?</label>
+                <input type="text" name="payday-content" id="payday-content" class="form-control" placeholder="(Weekly or Bi-weekly?)">
             </div>
-            <button class="btn btn-primary btn-lg btn-block">Add Account</button>
             <br/>
             <br/>
+            <div class="form-group">
+                <label for="Paycheck">How much is your Paycheck?</label>
+                <input type="number" name="paycheck-content" id="paycheck-content" class="form-control" placeholder="Paycheck Amount">
+            </div>
+            <br/>
+            <br/>
+            <button class="btn btn-primary btn-lg btn-block">Add Paycheck Info</button>
         </form>
+
+      
         
         <br/>
         <!-- displaying the flashed messages-->
