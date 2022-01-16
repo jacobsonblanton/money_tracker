@@ -52,7 +52,113 @@
         </div>
     </nav>
     <div class="container-fluid">
-        
+        <br/>
+        <p>This is a list of paydays for the weekly pay schedule. In other words, here is the list of every Friday for the year.</p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Payday Schedule for 2022:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 1st col-->
+                <tr>
+                    <td>1 | {{table[0]}}</td>
+                    <td>14 | {{table[13]}}</td>
+                    <td>27 | {{table[26]}}</td>
+                    <td>40 | {{table[39]}}</td>
+                </tr>
+                <!-- 2nd col-->
+                <tr>
+                    <td>2 | {{table[1]}}</td>
+                    <td>15 | {{table[14]}}</td>
+                    <td>28 | {{table[27]}}</td>
+                    <td>41 | {{table[40]}}</td>
+                </tr>
+                <!-- 3rd col-->
+                <tr>
+                    <td>3 | {{table[2]}}</td>
+                    <td>16 | {{table[15]}}</td>
+                    <td>29 | {{table[28]}}</td>
+                    <td>42 | {{table[41]}}</td>
+                </tr>
+                <!-- 4th col-->
+                <tr>    
+                    <td>4 | {{table[3]}}</td>
+                    <td>17 | {{table[16]}}</td>
+                    <td>30 | {{table[29]}}</td>
+                    <td>43 | {{table[42]}}</td>
+                </tr>
+                <!-- 5th col-->
+                <tr>    
+                    <td>5 | {{table[4]}}</td>
+                    <td>18 | {{table[17]}}</td>
+                    <td>31 | {{table[30]}}</td>
+                    <td>44 | {{table[43]}}</td>
+                </tr>
+                <!-- 6th col-->
+                <tr>    
+                    <td>6 | {{table[5]}}</td>
+                    <td>19 | {{table[18]}}</td>
+                    <td>32 | {{table[31]}}</td>
+                    <td>45| {{table[44]}}</td>
+                </tr>
+                <!-- 7th col-->
+                <tr>   
+                    <td>7 | {{table[6]}}</td>
+                    <td>20 | {{table[19]}}</td>
+                    <td>33 | {{table[32]}}</td>
+                    <td>46 | {{table[45]}}</td>
+                </tr>
+                <!-- 8th col-->
+                <tr>    
+                    <td>8 | {{table[7]}}</td>
+                    <td>21 | {{table[20]}}</td>
+                    <td>34 | {{table[33]}}</td>
+                    <td>47 | {{table[46]}}</td>
+                </tr>
+                <!-- 9th col-->
+                <tr>    
+                    <td>9 | {{table[8]}}</td>
+                    <td>22 | {{table[21]}}</td>
+                    <td>35 | {{table[34]}}</td>
+                    <td>48 | {{table[47]}}</td>
+                </tr>
+                <!-- 10th col-->
+                <tr>    
+                    <td>10 | {{table[9]}}</td>
+                    <td>23 | {{table[22]}}</td>
+                    <td>36 | {{table[35]}}</td>
+                    <td>49 | {{table[48]}}</td>
+                </tr>
+                <!-- 11th col-->
+                <tr>    
+                    <td>11 | {{table[10]}}</td>
+                    <td>24 | {{table[23]}}</td>
+                    <td>37 | {{table[36]}}</td>
+                    <td>50 | {{table[49]}}</td>
+                </tr>
+                <!-- 12th col-->
+                <tr>   
+                    <td>12 | {{table[11]}}</td>
+                    <td>25 | {{table[24]}}</td>
+                    <td>38 | {{table[37]}}</td>
+                    <td>51 | {{table[50]}}</td>
+                </tr>
+                <!-- 13th col-->
+                <tr>    
+                    <td>13 | {{table[12]}}</td>
+                    <td>26 | {{table[25]}}</td>
+                    <td>39 | {{table[38]}}</td>
+                    <td>52 | {{table[51]}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Your paycheck amount for the year is: {{paycheck.amount}}</td>
+                </tr>
+            </tfoot>
+        </table>
 
 
         <!-- displaying the flashed messages-->

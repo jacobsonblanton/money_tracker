@@ -1,12 +1,14 @@
+from os import error
 from flask import Flask, render_template, redirect, url_for, request, flash, Blueprint
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime, timedelta
+from datetime import date, timedelta
 from flask_login import UserMixin, login_manager, login_user, login_required, logout_user, current_user, LoginManager
 from sqlalchemy.sql.functions import user
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from .models import Account, Paycheck
 import itertools
+from tabulate import tabulate
 
 views = Blueprint('views', __name__)
 
@@ -19,7 +21,18 @@ def index():
 def home():
     if request.method == 'POST':
         pass
-    return render_template("home.html", user=current_user)
+    else:
+    # querying the Paycheck database 
+        paycheck = Paycheck.query.all() 
+
+        # getting the date for today and defining a table to append the list of paydays to 
+        today = date.today() # current day 
+        table = []
+
+        for d in every_payday(2022):
+            table.append(d.strftime("%Y-%m-%d"))
+            
+    return render_template("home.html", user=current_user, paycheck=paycheck, table=table)
 
 @views.route('/add-account', methods=['POST', 'GET'])
 @login_required
@@ -35,11 +48,11 @@ def add_account():
         if account:
             flash('This bank account already exists.', category='error')
             return redirect(url_for('views.add_account'))
-        elif len(acct_number) != 8 or len(acct_number) != 9:
-            flash('Your account number must be 8 or 9 digits, max!', category='error')
-            return redirect(url_for('views.add_account'))
         elif len(acct_number) == 0:
             flash('Account number cannot be left blank', category='error')
+            return redirect(url_for('views.add_account'))
+        elif len(acct_number) != 8 :
+            flash('Account number must be 8 digits.', category='error')
             return redirect(url_for('views.add_account'))
         elif len(acct_type) == 0:
             flash('Account type cannot be left blank', category='error')
@@ -57,20 +70,57 @@ def add_account():
 
     return render_template('add_account.html', user=current_user)
 
+def every_payday(year):
+    # this method will get every "weekly" payday for the given year 
+    d = date(year, 1, 7) # getting the first friday
+    d += timedelta(days = 4 - d.weekday()) # adding every friday to d
+    while d.year == year: # looping through the entire year while the d.year is equal to the specified year. 
+        yield d
+        d += timedelta(days = 7) # since payday is weekly or every 7 days
+    
+
+
+
 @views.route('/financial-calculator', methods=['POST', 'GET'])
 @login_required
-# this method allows the user to add finanical calculator to their bank accounts, which implements a paycheck and the 50-30-30 rule
+# this method allows the user to add finanical calculator to their bank accounts, which implements a paycheck and the 50-30-20 rule
 def financial_calculator():
     if request.method == 'POST':
         payday = request.form.get('payday-content')
-        amount = request.form.get('paycheck-content')
-        # querying the Paycheck database by the amount 
-        paycheck = Paycheck.query.all()
-        if len(paycheck) == 0:
+        amount = request.form.get('paycheck-content') 
+        
+        if len(amount) == 0:
             flash('Paycheck cannot be empty.', category='error')
+            return redirect(url_for('views.financial_calculator'))
+        elif len(payday) == 0:
+            flash('Payday cannot be empty.', category='error')
+            return redirect(url_for('views.financial_calculator'))
+        elif payday != 'weekly':
+            flash('Payday must be weekly for this financial calculator.', category='error')
+            return redirect(url_for('views.financial_calculator'))
+        else:
+            new_paycheck = Paycheck(amount=amount)
+            db.session.add(new_paycheck)
+            db.session.commit()
+            flash('Your paycheck info has been added', category='success')
+
+            return redirect(url_for('views.home'))
 
     else:
-        return render_template('financial_calc.html', user=current_user)
+        # querying the Paycheck database 
+        paycheck = Paycheck.query.all() 
+
+        # getting the date for today and defining a table to append the list of paydays to 
+        today = date.today() # current day 
+        table = []
+
+        for d in every_payday(2022):
+            table.append(d.strftime("%Y-%m-%d"))
+        
+        print(tabulate(table, tablefmt='fancy_grid', showindex=True))
+
+
+        return render_template('financial_calc.html', user=current_user, paycheck=paycheck, table=table)
 
 @views.route('/account', methods=['POST', 'GET'])
 @login_required
@@ -91,20 +141,7 @@ def account():
         return render_template("account.html", user=current_user, account=account, tab=tab)
 
 
-@views.route('/expenses', methods=['POST', 'GET'])
-@login_required
-def expenses():
-    if request.method == 'POST':
-        pass
-    return render_template("expenses.html", user=current_user)
 
-
-@views.route('/investing', methods=['POST', 'GET'])
-@login_required
-def investing():
-    if request.method == 'POST':
-        pass
-    return render_template("investing.html", user=current_user)
 
 
 @views.route('/notifications', methods=['POST', 'GET'])

@@ -66,9 +66,283 @@
             <br/>
             <button class="btn btn-primary btn-lg btn-block">Add Paycheck Info</button>
         </form>
-
-      
-        
+        <br/>
+        <p>This page will show a list of all paychecks and paydays for the year. It will also implement the 50-30-20 rule for your paycheck amount.</p>
+        <br/>
+        <!-- Printing the payment schedule in the form of a table (Took forever this damn way without using a loop!)-->
+        {% if payday == 'weekly' %}
+        <table class="table table-striped">
+            <tr>
+                <th>Payday Schedule for 2022:</th>
+            </tr>
+            <tr>
+                <td>1 | {{table[0]}}</td>
+            </tr>
+            <tr>
+                <td>2 | {{table[1]}}</td>
+            </tr>
+            <tr>
+                <td>3 | {{table[2]}}</td>
+            </tr>
+            <tr>    
+                <td>4 | {{table[3]}}</td>
+            </tr>
+            <tr>    
+                <td>5 | {{table[4]}}</td>
+            </tr>
+            <tr>    
+                <td>6 | {{table[5]}}</td>
+            </tr>
+            <tr>   
+                <td>7 | {{table[6]}}</td>
+            </tr>
+            <tr>    
+                <td>8 | {{table[7]}}</td>
+            </tr>
+            <tr>    
+                <td>9 | {{table[8]}}</td>
+            </tr>
+            <tr>    
+                <td>10 | {{table[9]}}</td>
+            </tr>
+            <tr>    
+                <td>11 | {{table[10]}}</td>
+            </tr>
+            <tr>   
+                <td>12 | {{table[11]}}</td>
+            </tr>
+            <tr>    
+                <td>13 | {{table[12]}}</td>
+            </tr>
+            <tr>   
+                <td>14 | {{table[13]}}</td>
+            </tr>
+            <tr>    
+                <td>15 | {{table[14]}}</td>
+            </tr>
+            <tr>    
+                <td>16 | {{table[15]}}</td>
+            </tr>
+            <tr>   
+                <td>17 | {{table[16]}}</td>
+            </tr>
+            <tr>   
+                <td>18 | {{table[17]}}</td>
+            </tr>
+            <tr>   
+                <td>19 | {{table[18]}}</td>
+            </tr>
+            <tr>    
+                <td>20 | {{table[19]}}</td>
+            </tr>
+            <tr>    
+                <td>21 | {{table[20]}}</td>
+            </tr>
+            <tr>    
+                <td>22 | {{table[21]}}</td>
+            </tr>
+            <tr>    
+                <td>23 | {{table[22]}}</td>
+            </tr>
+            <tr>    
+                <td>24 | {{table[23]}}</td>
+            </tr>
+            <tr>    
+                <td>25 | {{table[24]}}</td>
+            </tr>
+            <tr>    
+                <td>26 | {{table[25]}}</td>
+            </tr>
+            <tr>    
+                <td>27 | {{table[26]}}</td>
+            </tr>
+            <tr>    
+                <td>28 | {{table[27]}}</td>
+            </tr>
+            <tr>    
+                <td>29 | {{table[28]}}</td>
+            </tr>
+            <tr>    
+                <td>30 | {{table[29]}}</td>
+            </tr>
+            <tr>    
+                <td>31 | {{table[30]}}</td>
+            </tr>
+            <tr>    
+                <td>32 | {{table[31]}}</td>
+            </tr>
+            <tr>    
+                <td>33 | {{table[32]}}</td>
+            </tr>
+            <tr>    
+                <td>34 | {{table[33]}}</td>
+            </tr>
+            <tr>    
+                <td>35 | {{table[34]}}</td>
+            </tr>
+            <tr>    
+                <td>36 | {{table[35]}}</td>
+            </tr>
+            <tr>    
+                <td>37 | {{table[36]}}</td>
+            </tr>
+            <tr>    
+                <td>38 | {{table[37]}}</td>
+            </tr>
+            <tr>    
+                <td>39 | {{table[38]}}</td>
+            </tr>
+            <tr>    
+                <td>40 | {{table[39]}}</td>
+            </tr>
+            <tr>    
+                <td>41 | {{table[40]}}</td>
+            </tr>
+            <tr>   
+                <td>42 | {{table[41]}}</td>
+            </tr>
+            <tr>    
+                <td>43 | {{table[42]}}</td>
+            </tr>
+            <tr>    
+                <td>44 | {{table[43]}}</td>
+            </tr>
+            <tr>    
+                <td>45 | {{table[44]}}</td>
+            </tr>
+            <tr>    
+                <td>46 | {{table[45]}}</td>
+            </tr>
+            <tr>   
+                <td>47 | {{table[46]}}</td>
+            </tr>
+            <tr>    
+                <td>48 | {{table[47]}}</td>
+            </tr>
+            <tr>    
+                <td>49 | {{table[48]}}</td>
+            </tr>
+            <tr>    
+                <td>50 | {{table[49]}}</td>
+            </tr>
+            <tr>   
+                <td>51 | {{table[50]}}</td>
+            </tr>
+            <tr>    
+                <td>52 | {{table[51]}}</td>
+            </tr>
+        </table>
+        {% elif payday == 'bi-weekly' %}
+        <table class="table table-striped">
+            <tr>
+                <th>Payday Schedule for 2022:</th>
+            </tr>
+            <tr>
+                <td>1 | {{table[0]}}</td>
+            </tr>
+            
+            <tr>
+                <td>3 | {{table[2]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>5 | {{table[4]}}</td>
+            </tr>
+            
+            <tr>   
+                <td>7 | {{table[6]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>9 | {{table[8]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>11 | {{table[10]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>13 | {{table[12]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>15 | {{table[14]}}</td>
+            </tr>
+            
+            <tr>   
+                <td>17 | {{table[16]}}</td>
+            </tr>
+            
+            <tr>   
+                <td>19 | {{table[18]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>21 | {{table[20]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>23 | {{table[22]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>25 | {{table[24]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>27 | {{table[26]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>29 | {{table[28]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>31 | {{table[30]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>33 | {{table[32]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>35 | {{table[34]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>37 | {{table[36]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>39 | {{table[38]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>41 | {{table[40]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>43 | {{table[42]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>45 | {{table[44]}}</td>
+            </tr>
+            
+            <tr>   
+                <td>47 | {{table[46]}}</td>
+            </tr>
+            
+            <tr>    
+                <td>49 | {{table[48]}}</td>
+            </tr>
+            
+            <tr>   
+                <td>51 | {{table[50]}}</td>
+            </tr>
+            
+        </table>
+        {% endif %}
         <br/>
         <!-- displaying the flashed messages-->
         {% with messages = get_flashed_messages(with_categories=true) %} 
