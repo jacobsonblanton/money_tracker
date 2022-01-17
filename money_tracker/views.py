@@ -24,18 +24,21 @@ def home():
     else:
         # querying the Paycheck database 
         paycheck = Paycheck.query.all() 
-        # query the Paycheck database for just the payday and storing that infor in a varibale 
-        payday = Paycheck.query.with_entities(Paycheck.payday).all()
+        # querying the Paycheck database for just the payday and storing that info in a varibale 
         # changing the list of tuples of a string to a list of a string and then converting that to a string
-        print(str(list(itertools.chain(*payday))))
+        payday_list = list(itertools.chain(*(Paycheck.query.with_entities(Paycheck.payday).all())))
+        payday = payday_list[0]
+        print(payday)
         # getting the date for today and defining a table to append the list of paydays to 
         today = date.today() # current day 
         table = []
-
+        
+        paycheck_amount_after_tax = round((sum(list(itertools.chain(*(Paycheck.query.with_entities(Paycheck.amount).all()))))*52)/1.12, 2)
+        print(paycheck_amount_after_tax)
         for d in every_payday(2022):
             table.append(d.strftime("%Y-%m-%d"))
         
-        return render_template("home.html", user=current_user, paycheck=paycheck, table=table, payday=Paycheck.payday)
+        return render_template("home.html", user=current_user, paycheck=paycheck, table=table, payday=payday, paycheck_amount_after_tax=paycheck_amount_after_tax)
 
 @views.route('/add-account', methods=['POST', 'GET'])
 @login_required

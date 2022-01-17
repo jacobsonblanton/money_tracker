@@ -53,6 +53,8 @@
     </nav>
     <div class="container-fluid">
         <br/>
+        <!-- for a weekly pay schedule -->
+        {% if payday == 'weekly' %}
         <p>This is a list of paydays for the weekly pay schedule. In other words, here is the list of every Friday for the year.</p>
         <table class="table table-striped">
             <thead>
@@ -158,15 +160,18 @@
                 <!-- the second paycheck variable is "Paycheck" database in the SQL table  -->
                 {% for paycheck in paycheck %}
                 <tr>
-                    <td>Your paycheck amount for the year is: ${{paycheck.amount}}, {{paycheck.payday}}</td>
+                    <td>Your paycheck amount for the year is: ${{paycheck.amount}}, {{ payday }}</td>
                 </tr>
                 <tr>
-                    <td>Your estimated salary for the year is, before taxes, {{paycheck.amount}}*52</td>
+                    <td>Your estimated salary for the year is, before taxes, ${{paycheck.amount*52}}</td>
+                </tr>
+                <tr>
+                    <td>Your estimated salary after taxes (assuming your are in state of Kentucky), is ${{paycheck_amount_after_tax}}</td>
                 </tr>
                 {% endfor %}
             </tfoot>
         </table>
-
+        {% endif %}
 
         <!-- displaying the flashed messages-->
         {% with messages = get_flashed_messages(with_categories=true) %} 
