@@ -154,9 +154,16 @@
                 </tr>
             </tbody>
             <tfoot>
+                <!-- the first paycheck variable is the variable used from the "home"method in views.py -->
+                <!-- the second paycheck variable is "Paycheck" database in the SQL table  -->
+                {% for paycheck in paycheck %}
                 <tr>
-                    <td>Your paycheck amount for the year is: {{paycheck.amount}}</td>
+                    <td>Your paycheck amount for the year is: ${{paycheck.amount}}, {{paycheck.payday}}</td>
                 </tr>
+                <tr>
+                    <td>Your estimated salary for the year is, before taxes, {{paycheck.amount}}*52</td>
+                </tr>
+                {% endfor %}
             </tfoot>
         </table>
 

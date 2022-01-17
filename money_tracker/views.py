@@ -22,17 +22,20 @@ def home():
     if request.method == 'POST':
         pass
     else:
-    # querying the Paycheck database 
+        # querying the Paycheck database 
         paycheck = Paycheck.query.all() 
-
+        # query the Paycheck database for just the payday and storing that infor in a varibale 
+        payday = Paycheck.query.with_entities(Paycheck.payday).all()
+        # changing the list of tuples of a string to a list of a string and then converting that to a string
+        print(str(list(itertools.chain(*payday))))
         # getting the date for today and defining a table to append the list of paydays to 
         today = date.today() # current day 
         table = []
 
         for d in every_payday(2022):
             table.append(d.strftime("%Y-%m-%d"))
-            
-    return render_template("home.html", user=current_user, paycheck=paycheck, table=table)
+        
+        return render_template("home.html", user=current_user, paycheck=paycheck, table=table, payday=Paycheck.payday)
 
 @views.route('/add-account', methods=['POST', 'GET'])
 @login_required
@@ -99,7 +102,7 @@ def financial_calculator():
             flash('Payday must be weekly for this financial calculator.', category='error')
             return redirect(url_for('views.financial_calculator'))
         else:
-            new_paycheck = Paycheck(amount=amount)
+            new_paycheck = Paycheck(amount=amount, payday=payday)
             db.session.add(new_paycheck)
             db.session.commit()
             flash('Your paycheck info has been added', category='success')
